@@ -14,4 +14,11 @@ public interface MusicFavouritesConfig extends Config {
     default String favouriteTracks() {
         return "";
     }
+
+    @ConfigItem(
+        keyName = "favouriteTracks",
+        name = "",
+        description = ""
+    )
+    void setFavouriteTracks(String tracks);
 }
