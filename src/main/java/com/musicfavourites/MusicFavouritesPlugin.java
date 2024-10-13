@@ -10,6 +10,7 @@ import net.runelite.api.ScriptID;
 import net.runelite.api.SpriteID;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.*;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -26,6 +27,9 @@ import java.util.stream.Collectors;
 public class MusicFavouritesPlugin extends Plugin {
     @Inject
     private Client client;
+
+    @Inject
+    private ClientThread clientThread;
 
     @Inject
     private MusicFavouritesConfig config;
@@ -48,8 +52,7 @@ public class MusicFavouritesPlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
-        loadFavouriteTracks();
-        addToggleFavouritesButton();
+        clientThread.invokeLater(this::initializePlugin);
     }
 
     @Override
@@ -64,6 +67,10 @@ public class MusicFavouritesPlugin extends Plugin {
             return;
         }
 
+        initializePlugin();
+    }
+
+    private void initializePlugin() {
         Widget musicList = client.getWidget(ComponentID.MUSIC_LIST);
         scrollContainer = client.getWidget(ComponentID.MUSIC_SCROLL_CONTAINER);
 
