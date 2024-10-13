@@ -165,10 +165,6 @@ public class MusicFavouritesPlugin extends Plugin {
 
         Collection<Widget> tracksToShow = isFavouritesShown ? getSortedFavoriteTracks() : allTracks;
 
-        for (Widget favoriteTrack : getSortedFavoriteTracks()) {
-            log.info(favoriteTrack.getText());
-        }
-
         int y = 3;
 
         for (Widget track : tracksToShow) {
