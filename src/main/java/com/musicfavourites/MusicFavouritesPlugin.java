@@ -57,8 +57,7 @@ public class MusicFavouritesPlugin extends Plugin {
 
     @Override
     protected void shutDown() throws Exception {
-        favouriteTracks.clear();
-        removeToggleFavouritesButton();
+        clientThread.invokeLater(this::teardownPlugin);
     }
 
     @Subscribe
@@ -99,6 +98,17 @@ public class MusicFavouritesPlugin extends Plugin {
         }
 
         addToggleFavouritesButton();
+    }
+
+    private void teardownPlugin() {
+        favouriteTracks.clear();
+        removeToggleFavouritesButton();
+        isFavouritesShown = false;
+        updateMusicListUI();
+
+        for (Widget track : allTracks) {
+            track.setAction(FAVOURITE_OPTION_INDEX, null);
+        }
     }
 
     private void toggleFavourite(Widget track) {
