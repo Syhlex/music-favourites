@@ -1,7 +1,7 @@
 # Music Favourites
 
-This plugin allows RuneLite users to easily mark and view their favourite OSRS music tracks.
-Favourited tracks can be viewed as a separate list within Music Player tab.
+This plugin allows RuneLite users to easily mark and view their favourite OSRS music tracks.<br>
+Favourited tracks can be viewed as a separate list within the Music tab.
 
 ## Usage
 
