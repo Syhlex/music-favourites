@@ -145,6 +145,7 @@ public class MusicFavouritesPlugin extends Plugin {
         }
 
         addButtons();
+        updateMusicListUI();
     }
 
     private void teardownPlugin() {
