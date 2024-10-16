@@ -22,7 +22,7 @@ To view your favourites, click the <b>View Favourites</b> toggle button.
 
 ## Configuration
 
-Your list of favourited tracks is stored in the plugin's configuration settings.<br>
+Your list of favourited tracks is stored in the plugin's configuration settings.
 You can easily share your favourites by copying them, or import another player's favourites by pasting their list into your config.
 
 ![](./images/config.png)
