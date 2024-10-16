@@ -26,3 +26,9 @@ Your list of favourited tracks is stored in the plugin's configuration settings.
 You can easily share your favourites by copying them, or import another player's favourites by pasting their list into your config.
 
 ![](./images/config.png)
+
+## Compatibility
+
+This plugin is fully compatible with Runelite's default Music plugin.
+
+![](./images/music-compat.png)
