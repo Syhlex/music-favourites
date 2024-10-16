@@ -4,8 +4,10 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("musicfavourites")
+@ConfigGroup(MusicFavouritesConfig.GROUP)
 public interface MusicFavouritesConfig extends Config {
+    String GROUP = "musicfavourites";
+
     @ConfigItem(
         keyName = "favouriteTracks",
         name = "Favourite Tracks",
@@ -14,11 +16,4 @@ public interface MusicFavouritesConfig extends Config {
     default String favouriteTracks() {
         return "";
     }
-
-    @ConfigItem(
-        keyName = "favouriteTracks",
-        name = "",
-        description = ""
-    )
-    void setFavouriteTracks(String tracks);
 }

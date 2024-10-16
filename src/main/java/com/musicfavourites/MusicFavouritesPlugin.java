@@ -13,6 +13,7 @@ import net.runelite.api.widgets.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.PluginChanged;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
 import net.runelite.client.game.chatbox.ChatboxTextInput;
@@ -37,6 +38,9 @@ public class MusicFavouritesPlugin extends Plugin {
 
     @Inject
     private PluginManager pluginManager;
+
+    @Inject
+    private ConfigManager configManager;
 
     @Inject
     private ChatboxPanelManager chatboxPanelManager;
@@ -90,6 +94,16 @@ public class MusicFavouritesPlugin extends Plugin {
         if (pluginChanged.getPlugin() instanceof MusicPlugin) {
             isCoreMusicPluginEnabled = pluginManager.isPluginEnabled(pluginChanged.getPlugin());
             clientThread.invokeLater(this::addButtons);
+        }
+    }
+
+    @Subscribe
+    public void onConfigChanged(ConfigChanged configChanged) {
+        if (configChanged.getGroup().equals(MusicFavouritesConfig.GROUP) && configChanged.getKey().equals("favouriteTracks")) {
+            clientThread.invokeLater(() -> {
+                loadFavouriteTracks();
+                updateMusicListUI();
+            });
         }
     }
 
@@ -299,7 +313,7 @@ public class MusicFavouritesPlugin extends Plugin {
         String favouriteTrackNames = favouriteTracks.stream()
             .map(Widget::getText)
             .collect(Collectors.joining(","));
-        config.setFavouriteTracks(favouriteTrackNames);
+        configManager.setConfiguration(MusicFavouritesConfig.GROUP, "favouriteTracks", favouriteTrackNames);
     }
 
     private List<Widget> getSortedFavoriteTracks() {
