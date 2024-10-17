@@ -313,6 +313,7 @@ public class MusicFavouritesPlugin extends Plugin {
     private void updateFavouriteTracksConfig() {
         String favouriteTrackNames = favouriteTracks.stream()
             .map(Widget::getText)
+            .sorted()
             .collect(Collectors.joining(","));
         configManager.setConfiguration(MusicFavouritesConfig.GROUP, "favouriteTracks", favouriteTrackNames);
     }
